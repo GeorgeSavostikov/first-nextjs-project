@@ -1,6 +1,12 @@
+import { getCorrectNamePage, PageKeys } from "../utils/getCorrectNamePage";
 import styles from "../homePage.module.css";
 
-export default function AllPages({ params }) {
-  const { pageName } = params;
-  return <div className={styles.page}>{`Hmmm.... ${pageName}`}</div>;
+export default async function AllPages({
+  params,
+}: {
+  params: Promise<{ pageName: PageKeys }>;
+}) {
+  const { pageName } = await params;
+
+  return <div className={styles.page}>{getCorrectNamePage(pageName)}</div>;
 }
